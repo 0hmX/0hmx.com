@@ -9,6 +9,7 @@ Open `index.html` in a browser, or run `python3 -m http.server 8000` and visit h
 ## Edit and build
 
 - `src/page.html`: homepage, dark banner styling, and embedded moon artwork.
+- `src/jungle.js`: cached monochrome jungle layers, night sky, and speed-linked parallax.
 - `src/banner.html`: suspension physics, embedded vehicle artwork, responsive layout, and interactions.
 - `python3 build.py`: rebuilds the checked-in `index.html` using only the Python standard library.
 
