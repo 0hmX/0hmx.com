@@ -9,7 +9,7 @@ Open `index.html` in a browser, or run `python3 -m http.server 8000` and visit h
 ## Edit and build
 
 - `src/page.html`: homepage, dark banner styling, and red chrome portrait branding.
-- `src/assets/red-chrome-portrait.png`: supplied original artwork used for the profile avatar, feature image, and favicon; embedded by the build for single-file deployment.
+- `src/assets/red-chrome-portrait.png`: supplied original artwork used for the profile avatar and favicon; embedded by the build for single-file deployment.
 - `src/jungle.js`: cached monochrome jungle layers, night sky, and speed-linked parallax.
 - `src/banner.html`: suspension physics, embedded vehicle artwork, responsive layout, and interactions.
 - `python3 build.py`: rebuilds the checked-in `index.html` using only the Python standard library.
@@ -24,7 +24,7 @@ Open `index.html` in a browser, or run `python3 -m http.server 8000` and visit h
 - Brief feedback fades out. Reduced-motion preferences start the animation paused.
 - Higher speeds increase roughness and introduce larger ramps. The camera scales to keep jumps visible.
 
-This is an illustrative, stylized simulation rather than an engineering prediction. Vehicle artwork is AI-generated. The red chrome portrait is owner-supplied artwork, displayed in its original colors. Shared red accents connect the portrait to the handle, links, and footer.
+This is an illustrative, stylized simulation rather than an engineering prediction. Vehicle artwork is AI-generated. The red chrome portrait is owner-supplied artwork, displayed in its original colors. Shared red accents connect the portrait to the handle, links, and footer. The homepage introduces the autorouter and agent video framework, followed by work history at tscircuit, CashCowLabs, and as an independent engineer.
 
 ## Hosting
 
