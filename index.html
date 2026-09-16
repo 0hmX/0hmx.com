@@ -181,9 +181,10 @@ const sceneRoad=px=>{const h=road(pos+(px-center)/scale);if(fleet.classList.cont
 ctx.beginPath();ctx.moveTo(0,H);for(let px=0;px<=W+3;px+=3)ctx.lineTo(px,py(sceneRoad(px)));ctx.lineTo(W,H);ctx.closePath();ctx.globalAlpha=.4;ctx.fillStyle=palette.secondary;ctx.fill();ctx.globalAlpha=1;ctx.beginPath();for(let px=0;px<=W+3;px+=3){let sy=py(sceneRoad(px));if(px===0)ctx.moveTo(px,sy);else ctx.lineTo(px,sy);}ctx.strokeStyle=palette['muted-foreground'];ctx.lineWidth=3;ctx.stroke();
 for(let j=Math.floor(pos-8);j<pos+14;j++){let px=center+(j-pos)*scale;line(px,py(sceneRoad(px))+15,px+6,py(sceneRoad(px))+18,palette.border,1);}
 const show=$('cutaway').checked;
-// Body is one rigid mass; pitch and heave follow both axle forces.
-ctx.save();ctx.translate(center,py(y));ctx.rotate(-angle);if(atlas.complete&&atlas.naturalWidth){ctx.globalAlpha=show?.92:1;sprite(crops.body,vehicle.left*scale,vehicle.top*scale,vehicle.width*scale,vehicle.height*scale);ctx.globalAlpha=1;}ctx.restore();
+// Suspension sits behind the opaque body and foreground wheels.
 if(show){for(let i=0;i<2;i++){let px=center+axles[i]*scale,top=py(y+axles[i]*Math.sin(angle)+(vehicle.key==='car'?0:.32)),bottom=py(wy[i]);if(vehicle.key==='car')spring(px,top,bottom);else leafSuspension(px,py(y+axles[i]*Math.sin(angle)),bottom,vehicle.key!=='truck'||i===1);}}
+// Body is one rigid mass; pitch and heave follow both axle forces.
+ctx.save();ctx.translate(center,py(y));ctx.rotate(-angle);if(atlas.complete&&atlas.naturalWidth){sprite(crops.body,vehicle.left*scale,vehicle.top*scale,vehicle.width*scale,vehicle.height*scale);}ctx.restore();
 for(let i=0;i<2;i++){let px=center+axles[i]*scale,cy=py(wy[i]);ctx.save();ctx.translate(px,cy);ctx.rotate(pos/radius);if(atlas.complete&&atlas.naturalWidth)sprite(crops.wheel,-radius*scale,-radius*scale,2*radius*scale,2*radius*scale);ctx.restore();}
 }
 function animate(now){let dt=last?Math.min((now-last)/1000,.05):0;last=now;if(running){carry+=dt;while(carry>=1/120){step(1/120);carry-=1/120;}}draw();if(now-readout>100){renderHealth(now);$('telemetry').textContent=`${(actualSpeed*3.6).toFixed(0)} km/h · Rear ${(effectiveC[0]/1000).toFixed(1)} / front ${(effectiveC[1]/1000).toFixed(1)} kN·s/m · Body ${(Math.sqrt(bodyRms)/g).toFixed(2)} g RMS · ${contact.every(Boolean)?'Both tires grounded':!contact.some(Boolean)?'Airborne':contact[0]?'Front airborne':'Rear airborne'}`;readout=now;}requestAnimationFrame(animate);}
